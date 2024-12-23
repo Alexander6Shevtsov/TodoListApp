@@ -6,30 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		42A2A9E72D0AB8660002F532 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9DC2D0AB8660002F532 /* AppDelegate.swift */; };
+		42A2A9E82D0AB8660002F532 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E12D0AB8660002F532 /* NewTaskViewController.swift */; };
+		42A2A9E92D0AB8660002F532 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */; };
+		42A2A9EA2D0AB8660002F532 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */; };
+		42A2A9EB2D0AB8660002F532 /* TodoListApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E42D0AB8660002F532 /* TodoListApp.xcdatamodeld */; };
+		42A2A9EC2D0AB8660002F532 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42A2A9DD2D0AB8660002F532 /* Assets.xcassets */; };
+		42A2A9EE2D0AB8660002F532 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A2A9E02D0AB8660002F532 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		423B7B4E2D097F6E000C04B3 /* TodoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A2A9DC2D0AB8660002F532 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		42A2A9DD2D0AB8660002F532 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		42A2A9DE2D0AB8660002F532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42A2A9DF2D0AB8660002F532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		42A2A9E12D0AB8660002F532 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		42A2A9E62D0AB8660002F532 /* TodoListApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoListApp.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		423B7B632D097F6F000C04B3 /* Exceptions for "TodoListApp" folder in "TodoListApp" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 423B7B4D2D097F6E000C04B3 /* TodoListApp */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		423B7B502D097F6E000C04B3 /* TodoListApp */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				423B7B632D097F6F000C04B3 /* Exceptions for "TodoListApp" folder in "TodoListApp" target */,
-			);
-			path = TodoListApp;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		423B7B4B2D097F6E000C04B3 /* Frameworks */ = {
@@ -45,7 +42,7 @@
 		423B7B452D097F6E000C04B3 = {
 			isa = PBXGroup;
 			children = (
-				423B7B502D097F6E000C04B3 /* TodoListApp */,
+				42A2A9E52D0AB8660002F532 /* TodoListApp */,
 				423B7B4F2D097F6E000C04B3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +53,29 @@
 				423B7B4E2D097F6E000C04B3 /* TodoListApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		42A2A9E52D0AB8660002F532 /* TodoListApp */ = {
+			isa = PBXGroup;
+			children = (
+				42A2A9E12D0AB8660002F532 /* NewTaskViewController.swift */,
+				42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */,
+				42A2A9DC2D0AB8660002F532 /* AppDelegate.swift */,
+				42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */,
+				42A2A9EF2D1968FF0002F532 /* Storyboard */,
+				42A2A9DD2D0AB8660002F532 /* Assets.xcassets */,
+				42A2A9DE2D0AB8660002F532 /* Info.plist */,
+				42A2A9E42D0AB8660002F532 /* TodoListApp.xcdatamodeld */,
+			);
+			path = TodoListApp;
+			sourceTree = "<group>";
+		};
+		42A2A9EF2D1968FF0002F532 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				42A2A9E02D0AB8660002F532 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -72,9 +92,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				423B7B502D097F6E000C04B3 /* TodoListApp */,
 			);
 			name = TodoListApp;
 			packageProductDependencies = (
@@ -122,6 +139,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A2A9EC2D0AB8660002F532 /* Assets.xcassets in Resources */,
+				42A2A9EE2D0AB8660002F532 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,10 +151,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A2A9E72D0AB8660002F532 /* AppDelegate.swift in Sources */,
+				42A2A9E82D0AB8660002F532 /* NewTaskViewController.swift in Sources */,
+				42A2A9E92D0AB8660002F532 /* SceneDelegate.swift in Sources */,
+				42A2A9EA2D0AB8660002F532 /* TaskListViewController.swift in Sources */,
+				42A2A9EB2D0AB8660002F532 /* TodoListApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		42A2A9E02D0AB8660002F532 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42A2A9DF2D0AB8660002F532 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		423B7B652D097F6F000C04B3 /* Debug */ = {
@@ -153,6 +188,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -185,6 +221,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -343,6 +380,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		42A2A9E42D0AB8660002F532 /* TodoListApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				42A2A9E62D0AB8660002F532 /* TodoListApp.xcdatamodel */,
+			);
+			currentVersion = 42A2A9E62D0AB8660002F532 /* TodoListApp.xcdatamodel */;
+			path = TodoListApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 423B7B462D097F6E000C04B3 /* Project object */;
 }
