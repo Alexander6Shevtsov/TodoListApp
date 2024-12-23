@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol NewTaskViewControllerDelegate: AnyObject {
-    func reloadData()
-}
-
 final class TaskListViewController: UITableViewController {
     
     private var taskList: [TodoTask] = []
@@ -25,9 +21,7 @@ final class TaskListViewController: UITableViewController {
     }
     // переход на View для добавления new task
     @objc private func addNewTask() {
-        let newTaskVC = NewTaskViewController() // создаем экземпляр
-        newTaskVC.delegate = self
-        present(newTaskVC, animated: true) // открываем VC
+        showAlert(withTitle: "New Task", andMessage: "What do you want to do?")
     }
     
     // MARK: - UITableViewDataSource
@@ -55,15 +49,34 @@ final class TaskListViewController: UITableViewController {
             print(error.localizedDescription)
         }
     }
-}
-
-// MARK: - NewTaskViewControllerDelegate
-extension TaskListViewController: NewTaskViewControllerDelegate {
-    func reloadData() {
-        fetchData()
-        tableView.reloadData()
+    
+    private func showAlert(withTitle title: String, andMessage message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let saveAction = UIAlertAction(title: "Save Task", style: .default) { [unowned self] _ in
+        guard let task = alert.textFields?.first?.text, !task.isEmpty else { return } // извл из массива данные пользователя
+            save(task)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        alert.addAction(saveAction) // кнопка save
+        alert.addAction(cancelAction) // кнопка cancel
+        alert.addTextField { textField in // текстовое поле
+            textField.placeholder = "New Task" // серый текст
+        }
+        present(alert, animated: true) // отображение
     }
-}
+    
+    private func save(_ taskName: String) {
+        guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate) else { return }
+        let task = TodoTask(context: appDelegate.persistentContainer.viewContext)
+        task.title = taskName
+        taskList.append(task) // добавляем в массив
+        
+        let indexPath = IndexPath(row: taskList.count - 1, section: 0) // отображение
+        tableView.insertRows(at: [indexPath], with: .automatic)
+        
+        appDelegate.saveContext()
+        }
+    }
 
 // MARK: - Setup UI
 private extension TaskListViewController {
@@ -92,8 +105,6 @@ private extension TaskListViewController {
         navigationController?.navigationBar.tintColor = .white
     }
 }
-
-
 
 #Preview {
     TaskListViewController()

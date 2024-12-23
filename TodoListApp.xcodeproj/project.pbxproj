@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		42A2A9E72D0AB8660002F532 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9DC2D0AB8660002F532 /* AppDelegate.swift */; };
-		42A2A9E82D0AB8660002F532 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E12D0AB8660002F532 /* NewTaskViewController.swift */; };
 		42A2A9E92D0AB8660002F532 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */; };
 		42A2A9EA2D0AB8660002F532 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */; };
 		42A2A9EB2D0AB8660002F532 /* TodoListApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E42D0AB8660002F532 /* TodoListApp.xcdatamodeld */; };
@@ -22,7 +21,6 @@
 		42A2A9DD2D0AB8660002F532 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42A2A9DE2D0AB8660002F532 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42A2A9DF2D0AB8660002F532 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		42A2A9E12D0AB8660002F532 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		42A2A9E62D0AB8660002F532 /* TodoListApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoListApp.xcdatamodel; sourceTree = "<group>"; };
@@ -58,7 +56,6 @@
 		42A2A9E52D0AB8660002F532 /* TodoListApp */ = {
 			isa = PBXGroup;
 			children = (
-				42A2A9E12D0AB8660002F532 /* NewTaskViewController.swift */,
 				42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */,
 				42A2A9DC2D0AB8660002F532 /* AppDelegate.swift */,
 				42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */,
@@ -152,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A2A9E72D0AB8660002F532 /* AppDelegate.swift in Sources */,
-				42A2A9E82D0AB8660002F532 /* NewTaskViewController.swift in Sources */,
 				42A2A9E92D0AB8660002F532 /* SceneDelegate.swift in Sources */,
 				42A2A9EA2D0AB8660002F532 /* TaskListViewController.swift in Sources */,
 				42A2A9EB2D0AB8660002F532 /* TodoListApp.xcdatamodeld in Sources */,
