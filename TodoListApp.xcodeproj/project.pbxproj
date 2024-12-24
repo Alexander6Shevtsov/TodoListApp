@@ -13,6 +13,8 @@
 		42A2A9EB2D0AB8660002F532 /* TodoListApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42A2A9E42D0AB8660002F532 /* TodoListApp.xcdatamodeld */; };
 		42A2A9EC2D0AB8660002F532 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42A2A9DD2D0AB8660002F532 /* Assets.xcassets */; };
 		42A2A9EE2D0AB8660002F532 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A2A9E02D0AB8660002F532 /* LaunchScreen.storyboard */; };
+		42A2AA0D2D19BCF50002F532 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2AA0C2D19BCF50002F532 /* StorageManager.swift */; };
+		42A2AA0F2D19C1D80002F532 /* AlertControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A2AA0E2D19C1D80002F532 /* AlertControllerFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		42A2A9E62D0AB8660002F532 /* TodoListApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoListApp.xcdatamodel; sourceTree = "<group>"; };
+		42A2AA0C2D19BCF50002F532 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		42A2AA0E2D19C1D80002F532 /* AlertControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,23 +60,65 @@
 		42A2A9E52D0AB8660002F532 /* TodoListApp */ = {
 			isa = PBXGroup;
 			children = (
-				42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */,
-				42A2A9DC2D0AB8660002F532 /* AppDelegate.swift */,
-				42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */,
-				42A2A9EF2D1968FF0002F532 /* Storyboard */,
+				42A2AA0B2D19B91E0002F532 /* Factories */,
+				42A2A9EF2D1968FF0002F532 /* Storyboards */,
+				42A2AA082D19B6B90002F532 /* App */,
+				42A2AA092D19B6E10002F532 /* ViewControllers */,
+				42A2AA072D19B68E0002F532 /* Services */,
+				42A2AA0A2D19B7340002F532 /* Models */,
 				42A2A9DD2D0AB8660002F532 /* Assets.xcassets */,
-				42A2A9DE2D0AB8660002F532 /* Info.plist */,
-				42A2A9E42D0AB8660002F532 /* TodoListApp.xcdatamodeld */,
 			);
 			path = TodoListApp;
 			sourceTree = "<group>";
 		};
-		42A2A9EF2D1968FF0002F532 /* Storyboard */ = {
+		42A2A9EF2D1968FF0002F532 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				42A2A9E02D0AB8660002F532 /* LaunchScreen.storyboard */,
 			);
-			path = Storyboard;
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		42A2AA072D19B68E0002F532 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				42A2AA0C2D19BCF50002F532 /* StorageManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		42A2AA082D19B6B90002F532 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				42A2A9DC2D0AB8660002F532 /* AppDelegate.swift */,
+				42A2A9E22D0AB8660002F532 /* SceneDelegate.swift */,
+				42A2A9DE2D0AB8660002F532 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		42A2AA092D19B6E10002F532 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				42A2A9E32D0AB8660002F532 /* TaskListViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		42A2AA0A2D19B7340002F532 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				42A2A9E42D0AB8660002F532 /* TodoListApp.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		42A2AA0B2D19B91E0002F532 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				42A2AA0E2D19C1D80002F532 /* AlertControllerFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +196,8 @@
 			files = (
 				42A2A9E72D0AB8660002F532 /* AppDelegate.swift in Sources */,
 				42A2A9E92D0AB8660002F532 /* SceneDelegate.swift in Sources */,
+				42A2AA0D2D19BCF50002F532 /* StorageManager.swift in Sources */,
+				42A2AA0F2D19C1D80002F532 /* AlertControllerFactory.swift in Sources */,
 				42A2A9EA2D0AB8660002F532 /* TaskListViewController.swift in Sources */,
 				42A2A9EB2D0AB8660002F532 /* TodoListApp.xcdatamodeld in Sources */,
 			);
@@ -178,7 +226,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4C935HFS8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TodoListApp/Info.plist;
+				INFOPLIST_FILE = TodoListApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
@@ -211,7 +259,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4C935HFS8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TodoListApp/Info.plist;
+				INFOPLIST_FILE = TodoListApp/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;

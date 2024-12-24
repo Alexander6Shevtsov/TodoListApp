@@ -9,102 +9,134 @@ import UIKit
 
 final class TaskListViewController: UITableViewController {
     
+    private let cellID = "cell"
+    private let storageManager = StorageManager.shared
     private var taskList: [TodoTask] = []
-    private let cellID = "task"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
-        view.backgroundColor = .white
-        setupNavigationBar()
+        setupView()
         fetchData()
     }
-    // переход на View для добавления new task
-    @objc private func addNewTask() {
-        showAlert(withTitle: "New Task", andMessage: "What do you want to do?")
+    
+    private func addNewTask() {
+        showAlert()
     }
     
-    // MARK: - UITableViewDataSource
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        taskList.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) // обьект ячейки
-        let task = taskList[indexPath.row] // извлекаем объект из массива по индексу текущей строки
-        var content = cell.defaultContentConfiguration()
-        content.text = task.title
-        cell.contentConfiguration = content
-        return cell
-    }
-    
-    private func fetchData() {
-        guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate) else { return }
-        
-        let fetchRequest = TodoTask.fetchRequest() // создаем запос к базе
-        
-        do { // наполняем массив
-            taskList = try  appDelegate.persistentContainer.viewContext.fetch(fetchRequest)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    private func showAlert(withTitle title: String, andMessage message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Save Task", style: .default) { [unowned self] _ in
-        guard let task = alert.textFields?.first?.text, !task.isEmpty else { return } // извл из массива данные пользователя
-            save(task)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-        alert.addAction(saveAction) // кнопка save
-        alert.addAction(cancelAction) // кнопка cancel
-        alert.addTextField { textField in // текстовое поле
-            textField.placeholder = "New Task" // серый текст
-        }
-        present(alert, animated: true) // отображение
-    }
-    
-    private func save(_ taskName: String) {
-        guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate) else { return }
-        let task = TodoTask(context: appDelegate.persistentContainer.viewContext)
-        task.title = taskName
-        taskList.append(task) // добавляем в массив
-        
-        let indexPath = IndexPath(row: taskList.count - 1, section: 0) // отображение
-        tableView.insertRows(at: [indexPath], with: .automatic)
-        
-        appDelegate.saveContext()
+    private func save(taskName: String) {
+        storageManager.create(taskName) { [unowned self] task in
+            taskList.append(task)
+            tableView.insertRows(
+                at: [IndexPath(row: self.taskList.count - 1, section: 0)],
+                with: .automatic
+            )
         }
     }
 
+    private func fetchData() {
+        storageManager.fetchData { [unowned self] result in
+            switch result {
+            case .success(let taskList):
+                self.taskList = taskList
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
+
 // MARK: - Setup UI
 private extension TaskListViewController {
+    func setupView() {
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        view.backgroundColor = .white
+        setupNavigationBar()
+    }
+    
     func setupNavigationBar() {
         title = "Task List"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        // Navigation bar appearance
-        let navBarAppearance = UINavigationBarAppearance() // конфиг
-        navBarAppearance.backgroundColor = UIColor.milkBlue
-        
-        // цвет заголовка в мал состоянии и большом
+            
+            // Navigation bar appearance
+        let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        // применяем конфиг к small состоянию и big
+        navBarAppearance.backgroundColor = UIColor(named: "MilkBlue")
+            
+            // применяем конфиг к small и big состоянию
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        
-        // Add button to navigation bar
+            
+            // Add button to navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .add,
-            target: self,
-            action: #selector(addNewTask)
+            systemItem: .add,
+            primaryAction: UIAction { [unowned self] _ in
+                addNewTask()
+            }
         )
-        // цвет кнопок в NavBar
+            // color button in NavBar
         navigationController?.navigationBar.tintColor = .white
+        }
+    }
+    
+// MARK: - UITableViewDataSource
+    extension TaskListViewController {
+        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            taskList.count
+        }
+        
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) // обьект ячейки
+            let task = taskList[indexPath.row] // извлекаем объект из массива по индексу текущей строки
+            var content = cell.defaultContentConfiguration()
+            content.text = task.title
+            cell.contentConfiguration = content
+            return cell
+        }
+    }
+
+// MARK: - UITableViewDelegate
+extension TaskListViewController {
+    // Edit task
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let task = taskList[indexPath.row]
+        showAlert(task: task) {
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    // Delete task
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let task = taskList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            storageManager.delete(task)
+        }
     }
 }
+
+// MARK: - Alert Controller
+extension TaskListViewController {
+    private func showAlert(task: TodoTask? = nil, completion: (() -> Void)? = nil) {
+        let alertFactory = AlertControllerFactory(
+            userAction: task != nil ? .editTask : .newTask,
+            taskTitle: task?.title
+        )
+        let alert = alertFactory.createAlert { [weak self] taskName in
+            if let task, let completion {
+                self?.storageManager.update(task, newName: taskName)
+                completion()
+                return
+            }
+            
+            self?.save(taskName: taskName)
+        }
+        
+        present(alert, animated: true)
+    }
+}
+
 
 #Preview {
     TaskListViewController()
