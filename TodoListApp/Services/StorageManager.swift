@@ -8,10 +8,11 @@
 import CoreData
 
 final class StorageManager {
-    
+    // синглтон с приватным init
     static let shared = StorageManager()
     
     // MARK: - Core Data stack
+    // если свойство в StorageManager оно не ленивое!
     private let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TodoListApp")
         container.loadPersistentStores { _, error in
@@ -21,44 +22,45 @@ final class StorageManager {
         }
         return container
     }()
-    
+    // эта + инит чтобы сократить просто до viewContext
     private let viewContext: NSManagedObjectContext
-    
+    // иниц после свойств
     private init() {
         viewContext = persistentContainer.viewContext
     }
     
     // MARK: - CRUD
-    func create(_ taskName: String, completion: (TodoTask) -> Void) {
-        let task = TodoTask(context: viewContext)
-        task.title = taskName
-        completion(task)
-        saveContext()
+    // добавление объекта в базу
+    func create(_ taskName: String, completion: (TodoTask) -> Void) { // добавление в массив
+        let task = TodoTask(context: viewContext) // создаем задачу
+        task.title = taskName // присваиваем title имя
+        completion(task) // передаем в комплишн
+        saveContext() // сохранение в базе
     }
-    
+    // обработка возврата данных в массив TodoTask через помплишн
     func fetchData(completion: (Result<[TodoTask], Error>) -> Void) {
-        let fetchRequest = TodoTask.fetchRequest()
+        let fetchRequest = TodoTask.fetchRequest() // загрузка данных из базы
         
-        do {
+        do { // обращаемся к контексту, выполняем запрос, получается массив
             let tasks = try viewContext.fetch(fetchRequest)
-            completion(.success(tasks))
-        } catch let error {
+            completion(.success(tasks)) // возвращаем массив
+        } catch let error { // обработка ошибки
             completion(.failure(error))
         }
     }
-    
+        // задача которую меняем | новый параметр для неё
     func update(_ task: TodoTask, newName: String) {
-        task.title = newName
+        task.title = newName // обращаемся к task, свойство title = новое имя
         saveContext()
     }
     
-    func delete(_ task: TodoTask) {
-        viewContext.delete(task)
+    func delete(_ task: TodoTask) { // обращаемся к контексту, выз метод del...
+        viewContext.delete(task) // ... и передаем task
         saveContext()
     }
     
     // MARK: - Core Data Saving support
-    func saveContext() {
+    func saveContext() { // публичный!
         if viewContext.hasChanges {
             do {
                 try viewContext.save()

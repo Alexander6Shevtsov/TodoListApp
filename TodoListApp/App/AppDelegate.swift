@@ -20,9 +20,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UINavigationController(rootViewController: TaskListViewController())
         return true
     }
-
+    // выгрузка приложения из памяти
     func applicationWillTerminate(_ application: UIApplication) {
-        storageManager.saveContext()
+        storageManager.saveContext() // сохраняем данные до выгрузки
     }
 
 }

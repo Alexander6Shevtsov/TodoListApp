@@ -25,14 +25,14 @@ final class TaskListViewController: UITableViewController {
     
     private func save(taskName: String) {
         storageManager.create(taskName) { [unowned self] task in
-            taskList.append(task)
-            tableView.insertRows(
+            taskList.append(task) // созданную задачу передаем в массив
+            tableView.insertRows( // отображаем изменение в интерфейсе
                 at: [IndexPath(row: self.taskList.count - 1, section: 0)],
                 with: .automatic
             )
         }
     }
-
+    
     private func fetchData() {
         storageManager.fetchData { [unowned self] result in
             switch result {
@@ -56,58 +56,62 @@ private extension TaskListViewController {
     func setupNavigationBar() {
         title = "Task List"
         navigationController?.navigationBar.prefersLargeTitles = true
-            
-            // Navigation bar appearance
+        
+        // Navigation bar appearance
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.backgroundColor = UIColor(named: "MilkBlue")
-            
-            // применяем конфиг к small и big состоянию
+        
+        // применяем конфиг к small и big состоянию
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-            
-            // Add button to navigation bar
+        
+        // Add button to navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             systemItem: .add,
             primaryAction: UIAction { [unowned self] _ in
                 addNewTask()
             }
         )
-            // color button in NavBar
+        // color button in NavBar
         navigationController?.navigationBar.tintColor = .white
-        }
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension TaskListViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        taskList.count
     }
     
-// MARK: - UITableViewDataSource
-    extension TaskListViewController {
-        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            taskList.count
-        }
-        
-        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) // обьект ячейки
-            let task = taskList[indexPath.row] // извлекаем объект из массива по индексу текущей строки
-            var content = cell.defaultContentConfiguration()
-            content.text = task.title
-            cell.contentConfiguration = content
-            return cell
-        }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) // обьект ячейки
+        let task = taskList[indexPath.row] // извлекаем объект из массива по индексу текущей строки
+        var content = cell.defaultContentConfiguration()
+        content.text = task.title
+        cell.contentConfiguration = content
+        return cell
     }
+}
 
 // MARK: - UITableViewDelegate
 extension TaskListViewController {
     // Edit task
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true) // снятие выделения с ячейки
         let task = taskList[indexPath.row]
-        showAlert(task: task) {
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+        showAlert(task: task) { // вывод окно редактирования
+            tableView.reloadRows(at: [indexPath], with: .automatic) // обновить интерфейс
         }
     }
     
     // Delete task
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
         if editingStyle == .delete {
             let task = taskList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -136,7 +140,6 @@ extension TaskListViewController {
         present(alert, animated: true)
     }
 }
-
 
 #Preview {
     TaskListViewController()

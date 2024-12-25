@@ -32,7 +32,7 @@ final class AlertControllerFactory: AlertFactoryProtocol {
             guard !task.isEmpty else { return }
             completion(task)
         }
-        
+                                                                 // красная
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
         
         alertController.addAction(saveAction)
