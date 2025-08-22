@@ -1,13 +1,20 @@
 # TodoListApp
 
-Небольшое iOS-приложение без Storyboard. Вёрстка кодом, чистый запуск из `SceneDelegate`.
+Простое iOS-приложение «Список дел». Вёрстка кодом, без Storyboard. Точка входа через `SceneDelegate`.
 
 ## Стек
-- Swift
-- UIKit, **без Storyboard** (верстка кодом)
-- Entry point: `SceneDelegate` / `AppDelegate`
+- Swift 5.10+
+- iOS 15.0+
+- UIKit, Auto Layout, програмная вёрстка
+- Навигация: `UINavigationController`
+- Хранение: CoreData
 
 ## Возможности
-- Список задач (to-do)
-- Добавление, отметка выполнения, удаление
-- [Опционально] Редактирование, сортировка, сохранение локально
+- Создание задачи
+- Отметка выполнения
+- Удаление задачи
+- Редактирование
+
+| Создание | Удаление | 
+|---|---|
+| ![list](Docs/screenshot1.png) | ![create](Docs/screenshot2.png) |
