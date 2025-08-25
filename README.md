@@ -16,5 +16,5 @@
 - Редактирование
 
 | Создание | Удаление | Редактирование |
-|---|---|
+|---|---|---|
 | ![list](Docs/screenshot1.png) | ![create](Docs/screenshot2.png) | ![create](Docs/screenshot3.png) |
